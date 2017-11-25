@@ -19,6 +19,11 @@ public class HorseService {
 		return horseDao.getAll();
 	}
 
+	@Transactional(readOnly = true)
+	public HorseEntity get(Long pk) {
+		return horseDao.getByPk(pk);
+	}
+
 	@Transactional(readOnly = false)
 	public HorseEntity create(HorseEntity entity) {
 		Long pk = horseDao.save(entity);

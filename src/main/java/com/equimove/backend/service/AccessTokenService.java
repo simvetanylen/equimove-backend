@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -20,13 +21,18 @@ public class AccessTokenService {
 	@Autowired
 	private UserService userService;
 
-	@Transactional
+	@Transactional(readOnly = true)
+	public List<AccessTokenEntity> getAll() {
+		return accessTokenDao.getAll();
+	}
+
+	@Transactional(readOnly = true)
 	public Long getUserPkWithToken(String token) {
 		AccessTokenEntity entity = accessTokenDao.getByPk(token);
 		return entity.getUser().getPk();
 	}
 
-	@Transactional
+	@Transactional(readOnly = false)
 	public String create(Long userPk) {
 
 		String token = UUID.randomUUID().toString();
@@ -38,7 +44,7 @@ public class AccessTokenService {
 		return token;
 	}
 
-	@Transactional
+	@Transactional(readOnly = false)
 	public void delete(String token) {
 
 		AccessTokenEntity entity = accessTokenDao.getByPk(token);
