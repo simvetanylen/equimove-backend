@@ -2,8 +2,10 @@ package com.equimove.backend.rest;
 
 import com.equimove.backend.component.PrincipalComponent;
 import com.equimove.backend.constant.UserType;
+import com.equimove.backend.entity.ClaimEntity;
 import com.equimove.backend.entity.HorseEntity;
 import com.equimove.backend.entity.UserEntity;
+import com.equimove.backend.service.ClaimService;
 import com.equimove.backend.service.HorseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,9 @@ public class HorseWS {
 	@Autowired
 	private PrincipalComponent principalComponent;
 
+	@Autowired
+	private ClaimService claimService;
+
 	@GET
 	@Path("/horses")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -34,6 +39,22 @@ public class HorseWS {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response get(@PathParam("pk") Long pk) {
 		return Response.status(200).entity(horseService.get(pk)).build();
+	}
+
+	@POST
+	@Path("/horses/{pk}/claims")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addRequest(@PathParam("pk") Long horsePk, ClaimEntity claim) {
+		UserEntity currentUser = principalComponent.getCurrentUser();
+		if (currentUser.getType().equals(UserType.LOGGED)) {
+			claim.setClaimant(currentUser);
+			claim.setHorse(horseService.get(horsePk));
+			claim = claimService.create(claim);
+			return Response.status(201).entity(claim).build();
+		} else {
+			throw new NotAuthorizedException("Not authorized");
+		}
 	}
 
 	@POST
