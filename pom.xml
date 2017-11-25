@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.equimove</groupId>
+    <artifactId>backend</artifactId>
+    <version>0.0.0-SNAPSHOT</version>
+
+    <properties>
+        <junit.version>3.8.1</junit.version>
+        <net.sf.dozer.version>5.5.1</net.sf.dozer.version>
+        <org.springframework.boot.version>1.5.2.RELEASE</org.springframework.boot.version>
+        <org.springframework.version>4.3.7.RELEASE</org.springframework.version>
+        <org.aspectj.version>1.8.10</org.aspectj.version>
+        <org.glassfish.jersey.media.version>2.25.1</org.glassfish.jersey.media.version>
+        <org.glassfish.jersey.ext.version>2.25.1</org.glassfish.jersey.ext.version>
+        <org.projectlombok.version>1.16.16</org.projectlombok.version>
+        <org.hibernate.version>5.2.5.Final</org.hibernate.version>
+        <org.hibernate.validator.version>5.3.4.Final</org.hibernate.validator.version>
+        <commons-io.version>2.5</commons-io.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${org.springframework.boot.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>log4j-over-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jersey</artifactId>
+            <version>${org.springframework.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+            <version>${org.springframework.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>${org.springframework.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${org.springframework.boot.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
+        <!--<version>${org.springframework.boot.version}</version>-->
+        <!--</dependency>-->
+
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <!-- Aspectj -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${org.aspectj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${org.aspectj.version}</version>
+        </dependency>
+
+        <!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${org.hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${org.hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${org.hibernate.validator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+        </dependency>
+
+        <!-- Jersey -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-multipart</artifactId>
+            <version>${org.glassfish.jersey.media.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.ext</groupId>
+            <artifactId>jersey-bean-validation</artifactId>
+            <version>${org.glassfish.jersey.ext.version}</version>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${org.projectlombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Dozer mapper -->
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>${net.sf.dozer.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Javatuple -->
+        <dependency>
+            <groupId>org.javatuples</groupId>
+            <artifactId>javatuples</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- apache commons-io, utile pour écrire des fichiers. -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <!-- h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.195</version>
+        </dependency>
+
+        <!-- Junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>equimove</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${org.springframework.boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <requiresUnpack>
+                        <dependency>
+                            <groupId>org.glassfish.jersey.media</groupId>
+                            <artifactId>jersey-media-multipart</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.jersey.ext</groupId>
+                            <artifactId>jersey-bean-validation</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.jersey.core</groupId>
+                            <artifactId>jersey-common</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.jersey.core</groupId>
+                            <artifactId>jersey-server</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.jersey.media</groupId>
+                            <artifactId>jersey-media-json-jackson</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.jersey.media</groupId>
+                            <artifactId>jersey-media-json-jackson</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.jersey.media</groupId>
+                            <artifactId>jersey-media-json-processing</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.jersey.containers</groupId>
+                            <artifactId>jersey-container-servlet</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.jersey.containers</groupId>
+                            <artifactId>jersey-container-servlet-core</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.jersey.containers</groupId>
+                            <artifactId>jersey-container-jdk-http</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.jersey.containers</groupId>
+                            <artifactId>project</artifactId>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.jersey.ext</groupId>
+                            <artifactId>jersey-spring3</artifactId>
+                        </dependency>
+
+                    </requiresUnpack>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
