@@ -1,5 +1,6 @@
 package com.equimove.backend.config;
 
+import com.equimove.backend.filter.CrossDomainContainerResponseFilter;
 import com.equimove.backend.rest.*;
 import com.equimove.backend.service.AccessTokenService;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -18,5 +19,7 @@ public class JerseyConfig extends ResourceConfig {
 		register(MeWS.class);
 		register(LoginWS.class);
 		register(AccessTokenWS.class);
+
+		register(CrossDomainContainerResponseFilter.class);
 	}
 }
